@@ -1,0 +1,8 @@
+node_modules
+.prettierrc
+yarn.lock
+.gitignore
+README.md
+dist
+assets
+playground/meanderer.js

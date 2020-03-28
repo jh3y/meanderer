@@ -1,0 +1,74 @@
+{
+  "name": "meanderer",
+  "version": "0.0.1",
+  "description": "micro-library for generating scaled CSS offset-paths",
+  "main": "dist/meanderer.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "build": "rollup -c rollup.config.js",
+    "build:prod": "rollup -c rollup.config.prod.js",
+    "dist": "yarn build && yarn build:prod",
+    "predev": "browser-sync start --config bs-config.js",
+    "prebuild:site": "mkdir -pv public",
+    "build:meanderer": "rollup -c rollup.config.deploy.js",
+    "build:scripts": "rollup -c rollup.config.demo.js",
+    "build:markup": "html-minifier --collapse-whitespace -o public/index.html playground/index.html",
+    "build:styles": "postcss --use autoprefixer cssnano -o public/style.css playground/style.css",
+    "build:site": "yarn build:scripts && yarn build:styles && yarn build:markup && yarn build:meanderer",
+    "dev": "rollup -w -c rollup.config.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint--fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jh3y/meanderer.git"
+  },
+  "keywords": [
+    "offset-path",
+    "motion-path",
+    "responsive",
+    "CSS"
+  ],
+  "files": [
+    "dist/*"
+  ],
+  "lint-staged": {
+    "{src,playground}/**/*.{js,json,css}": [
+      "eslint",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "author": "jh3y",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jh3y/meanderer/issues"
+  },
+  "homepage": "https://github.com/jh3y/meanderer#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "autoprefixer": "^9.7.5",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
+    "d3": "^5.15.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "html-minifier": "^4.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.9",
+    "postcss-cli": "^7.1.0",
+    "prettier": "^2.0.2",
+    "prettier-eslint": "^9.0.1",
+    "rollup": "^2.2.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-filesize": "^6.2.1",
+    "rollup-plugin-uglify": "^6.0.4"
+  }
+}
